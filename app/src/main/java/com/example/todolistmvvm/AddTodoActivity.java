@@ -5,9 +5,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.todolistmvvm.Database.TodoItem;
+import com.example.todolistmvvm.Database.TodoRepository;
 
 import java.util.Date;
 
@@ -15,7 +19,7 @@ public class AddTodoActivity extends AppCompatActivity implements View.OnClickLi
 
     private EditText etDescription;
     private RadioGroup radioGroup;
-
+    private TodoRepository mRepo;
     private final int HIGH_PRIORITY = 1;
     private final int MEDIUM_PRIORITY = 2;
     private final int LOW_PRIORITY = 3;
@@ -27,6 +31,7 @@ public class AddTodoActivity extends AppCompatActivity implements View.OnClickLi
         etDescription = findViewById(R.id.etTodoDescription);
         radioGroup = findViewById(R.id.radioGroup);
         Button btnAdd = findViewById(R.id.btnAdd);
+        mRepo = new TodoRepository(this);
         btnAdd.setOnClickListener(this);
     }
 
@@ -36,7 +41,11 @@ public class AddTodoActivity extends AppCompatActivity implements View.OnClickLi
         int priority = getPriority();
         Date date = new Date();
         if(!description.equals("")){
-
+            TodoItem todoItem = new TodoItem(description, priority, date);
+            mRepo.addTodo(todoItem);
+            finish();
+        }else{
+            Toast.makeText(this, "Please enter a description!", Toast.LENGTH_SHORT).show();
         }
     }
 

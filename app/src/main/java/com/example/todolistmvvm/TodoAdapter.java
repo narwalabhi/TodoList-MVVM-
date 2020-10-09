@@ -1,0 +1,104 @@
+package com.example.todolistmvvm;
+
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.todolistmvvm.Database.TodoItem;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
+
+    private static final String DATE_FORMAT = "dd/MM/yyy";
+
+    private List<TodoItem> todos;
+    private LayoutInflater layoutInflater;
+    private Context context;
+
+    private SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+
+    public TodoAdapter(Context context) {
+        this.todos = new ArrayList<>();
+        this.context = context;
+        this.layoutInflater = LayoutInflater.from(context);
+    }
+
+    public void setTodos(List<TodoItem> todos){
+        this.todos = todos;
+        notifyDataSetChanged();
+    }
+
+    @NonNull
+    @Override
+    public TodoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = layoutInflater.inflate(R.layout.todo_list_item, parent, false);
+        return new TodoViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull TodoViewHolder holder, int position) {
+        TodoItem todoItem = todos.get(position);
+        holder.bind(todoItem);
+    }
+
+    @Override
+    public int getItemCount() {
+        return todos != null ? todos.size() : 0;
+    }
+
+    public class TodoViewHolder extends RecyclerView.ViewHolder{
+
+        private TextView tvDescription, tvDate, tvPriority;
+
+        public TodoViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            tvDescription = itemView.findViewById(R.id.tvTodoDescription);
+            tvDate = itemView.findViewById(R.id.tvTodoDate);
+            tvPriority = itemView.findViewById(R.id.tvPriority);
+
+        }
+
+        public void bind(TodoItem todoItem) {
+            String description = todoItem.getDescription();
+            int priority = todoItem.getPriority();
+            String date = dateFormat.format(todoItem.getUpdateAt());
+            tvDescription.setText(description);
+            tvDate.setText(date);
+            tvPriority.setText(priority+"");
+            GradientDrawable priorityCircle = (GradientDrawable) tvPriority.getBackground();
+            int bgColor = getPriorityColor(priority);
+            priorityCircle.setColor(bgColor);
+        }
+
+        private int getPriorityColor(int priority) {
+            int priorityColor = 0;
+
+            switch (priority) {
+                case 1:
+                    priorityColor = ContextCompat.getColor(context, R.color.materialRed);
+                    break;
+                case 2:
+                    priorityColor = ContextCompat.getColor(context, R.color.materialOrange);
+                    break;
+                case 3:
+                    priorityColor = ContextCompat.getColor(context, R.color.materialYellow);
+                    break;
+                default:
+                    break;
+            }
+            return priorityColor;
+        }
+    }
+}

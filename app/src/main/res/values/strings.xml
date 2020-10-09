@@ -3,4 +3,10 @@
     <string name="count">0</string>
     <string name="todo">Todo</string>
     <string name="date">09/10/2020</string>
+    <string name="description">Description</string>
+    <string name="priority">Priority</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="low">Low</string>
+    <string name="add">add</string>
 </resources>

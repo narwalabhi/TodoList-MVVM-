@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,7 +13,7 @@
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="@string/description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Priority"
+        android:text="@string/priority"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="@+id/etTodoDescription"
         app:layout_constraintTop_toBottomOf="@+id/etTodoDescription" />
@@ -50,7 +49,7 @@
             android:layout_weight="1"
             android:checked="true"
             android:background="@color/materialRed"
-            android:text="High" />
+            android:text="@string/high" />
 
         <RadioButton
             android:id="@+id/rbMedium"
@@ -58,7 +57,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/materialOrange"
-            android:text="Medium" />
+            android:text="@string/medium" />
 
         <RadioButton
             android:id="@+id/rbLow"
@@ -66,7 +65,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/materialYellow"
-            android:text="Low" />
+            android:text="@string/low" />
 
     </RadioGroup>
 
@@ -76,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@color/colorPrimary"
-        android:text="add"
+        android:text="@string/add"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="@+id/radioGroup"
         app:layout_constraintStart_toStartOf="@+id/radioGroup"

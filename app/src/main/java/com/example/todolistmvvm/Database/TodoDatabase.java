@@ -27,4 +27,7 @@ public abstract class TodoDatabase extends RoomDatabase {
         }
         return myDbInstance;
     }
+
+    public abstract TodoDao dao();
+
 }
