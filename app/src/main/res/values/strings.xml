@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Todo List(MVVM)</string>
+    <string name="app_name">Todo List</string>
     <string name="count">0</string>
     <string name="todo">Todo</string>
     <string name="date">09/10/2020</string>
@@ -9,4 +9,5 @@
     <string name="medium">Medium</string>
     <string name="low">Low</string>
     <string name="add">add</string>
+    <string name="update">Update</string>
 </resources>

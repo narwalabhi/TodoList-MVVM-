@@ -7,7 +7,6 @@ import com.example.todolistmvvm.Database.TodoItem;
 import com.example.todolistmvvm.Database.TodoRepository;
 
 public class AddTodoViewModel extends ViewModel {
-
     LiveData<TodoItem> todoItem;
 
     public AddTodoViewModel(TodoRepository mRepo, int todoID) {

@@ -70,4 +70,14 @@ public class TodoItem {
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
     }
+
+    @Override
+    public String toString() {
+        return "TodoItem{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", priority=" + priority +
+                ", updateAt=" + updateAt +
+                '}';
+    }
 }
